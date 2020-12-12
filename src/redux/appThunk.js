@@ -1,8 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from 'axios'
-import {toast} from "react-toastify";
 
 export const getCountriesList = createAsyncThunk('getCurrentWeather', () => {
-
-    return  null
+    return  axios.get('https://restcountries.eu/rest/v2/al')
+        .then(res => res.data)
+        .catch(err=> {
+            throw new Error(err)})
 })
