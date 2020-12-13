@@ -1,0 +1,61 @@
+.CountriesList {
+  &__Country {
+    & a{
+      text-decoration: none;
+      text-underline: none;
+    }
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      box-sizing: border-box;
+      width: 100%;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      min-width: 64px;
+      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 500;
+      line-height: 1.75;
+      border-radius: 4px;
+      letter-spacing: 0.02857em;
+      text-transform: uppercase;
+      border: 0;
+      cursor: pointer;
+      margin: 0;
+      outline: 0;
+      position: relative;
+      align-items: center;
+      user-select: none;
+      vertical-align: middle;
+      text-decoration: none;
+      background-color: transparent;
+      -webkit-tap-highlight-color: transparent;
+
+      &__Avatar {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: 30%;
+
+        & > * {
+          margin: 5px;
+        }
+      }
+
+      &__Name {
+        box-sizing: border-box;
+        width: 50%;
+      }
+
+      &__TimeZone {
+        box-sizing: border-box;
+        width: 15%
+      }
+
+      & > * {
+        //flex-grow: 1;
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import {createReducer} from "@reduxjs/toolkit";
 
 import {getCountriesList} from "../appThunk";
+import {setCitiesFromStorage, setCountryToFavorites, removeCountryFromFavorites} from "../actions/countriesActions";
 
 const initialState = {
     countriesList: [],
@@ -13,6 +14,7 @@ const countriesReducer = createReducer(initialState, {
     [getCountriesList.pending]: (state) => {
         state.isFetching = true;
         state.hasFetched = false;
+        state.isFetchingError = null;
     },
     [getCountriesList.rejected]: (state, action) => {
         state.isFetchingError = action.error.message;
@@ -20,6 +22,12 @@ const countriesReducer = createReducer(initialState, {
         return state;
     },
     [getCountriesList.fulfilled]: (state, action) => {
+        state.countriesList = action.payload;
+        state.hasFetched = true;
+        state.isFetching = false;
+        return state;
+    },
+    [setCitiesFromStorage]: (state, action) => {
         state.countriesList = action.payload;
         state.hasFetched = true;
         state.isFetching = false;
