@@ -1,10 +1,11 @@
 import {createReducer} from "@reduxjs/toolkit";
 
 import {getCountriesList} from "../appThunk";
-import {setCitiesFromStorage, setCountryToFavorites, removeCountryFromFavorites} from "../actions/countriesActions";
+import {setCountriesFromStorage, toggleFavoriteCountry} from "../actions/countriesActions";
 
 const initialState = {
     countriesList: [],
+    favorites: [],
     hasFetched: false,
     isFetching: false,
     isFetchingError: null
@@ -27,11 +28,23 @@ const countriesReducer = createReducer(initialState, {
         state.isFetching = false;
         return state;
     },
-    [setCitiesFromStorage]: (state, action) => {
+    [setCountriesFromStorage]: (state, action) => {
         state.countriesList = action.payload;
         state.hasFetched = true;
         state.isFetching = false;
         return state;
+    },
+    [toggleFavoriteCountry]: (state, action) => {
+        let tempArray = [...state.favorites]
+        if (action.payload.isLiked) {
+            tempArray.forEach((country, index)=>{
+                if (country.alpha2Code === action.payload.country.alpha2Code) {
+                    tempArray.splice(index, 1)
+                }
+            })
+        } else { tempArray.push(action.payload.country) }
+        return {...state,
+        favorites: tempArray};
     },
 
 })

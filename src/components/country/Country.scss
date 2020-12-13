@@ -1,0 +1,39 @@
+.Country {
+  list-style-type: none;
+  &__Flag {
+    box-sizing: border-box;
+    width: 300px;
+    height: 200px;
+    padding: 0;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  }
+
+  &__Lists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__Container {
+      margin: 1%;
+      width: 31%;
+      list-style-type: none;
+      text-align: left;
+      display: flex;
+      flex-flow: wrap column;
+      align-items: center;
+      &__Content {
+
+
+    }
+    //&__Translations {
+    //  margin: 2%;
+    //  width: 45%;
+    //  text-align: left;
+    //  list-style-type: none;
+    //  & ul {
+    //    list-style-type: none;
+    //  }
+    }
+  }
+
+}
