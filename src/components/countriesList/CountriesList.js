@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {useLocation} from "react-router-dom";
 
 import TextField from '@material-ui/core/TextField';
@@ -11,26 +11,14 @@ import CountryRow from "../CountryRow/CountryRow";
 function CountriesList(props) {
     const location = useLocation();
     const [filter, setFilter] = useState('');
-    const countriesList = (location.pathname === '/favorites') ? props.favorites : props.countriesList
+    const countriesList = (location.pathname !== '/favorites') ? props.countriesList : props.countriesList.filter(country => country.isLiked)
 
-    function searchName(value, string) {
-        let result = false;
-        const lowValue = value.toLowerCase();
-        const lowString = string.toLowerCase();
-        for (let i = 0; i <= string.length - value.length; i++) {
-            if (lowValue === lowString.slice(i, i + value.length)) {
-                result = true;
-                i = string.length;
-            }
-        }
-        return result
-    }
-
-    const rows = (props.hasFetched && countriesList.map(country => {
-        if (filter.length < 2 || searchName(filter, country.name)) {
-            return <CountryRow className="CountriesList__Country" key={country.numericCode} {...country}/>
-        }
-    }))
+    const rows = useMemo(() => {
+           return (props.hasFetched && countriesList.map(country =>
+                (filter.length < 2 || country.name.toLowerCase().includes(filter.toLowerCase())) &&
+                <CountryRow className="CountriesList__Country" key={country.alpha2Code} {...country}/>
+            ))
+        }, [countriesList, filter, props.hasFetched])
 
     const handleFilter = (e) => {
         setFilter(e.target.value)

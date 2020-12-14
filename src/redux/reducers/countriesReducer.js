@@ -23,7 +23,20 @@ const countriesReducer = createReducer(initialState, {
         return state;
     },
     [getCountriesList.fulfilled]: (state, action) => {
-        state.countriesList = action.payload;
+        action.payload.forEach(country => {
+            state.countriesList.push({
+                name: country.name,
+                nativeName: country.nativeName,
+                flag: country.flag,
+                capital: country.capital,
+                population: country.population,
+                timezones: country.timezones,
+                alpha2Code: country.alpha2Code,
+                languages: country.languages,
+                translations: country.translations,
+                isLiked: false,
+            })
+        })
         state.hasFetched = true;
         state.isFetching = false;
         return state;
@@ -35,16 +48,12 @@ const countriesReducer = createReducer(initialState, {
         return state;
     },
     [toggleFavoriteCountry]: (state, action) => {
-        let tempArray = [...state.favorites]
-        if (action.payload.isLiked) {
-            tempArray.forEach((country, index)=>{
-                if (country.alpha2Code === action.payload.country.alpha2Code) {
-                    tempArray.splice(index, 1)
+            state.countriesList.forEach((country, index) => {
+                if (country.alpha2Code === action.payload.alpha2Code) {
+                    state.countriesList[index].isLiked = !action.payload.isLiked
                 }
             })
-        } else { tempArray.push(action.payload.country) }
-        return {...state,
-        favorites: tempArray};
+        return state;
     },
 
 })

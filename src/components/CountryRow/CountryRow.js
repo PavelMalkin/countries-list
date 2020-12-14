@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
 function CountryRow(props) {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const favorites = useSelector(store => store.countries.favorites)
-    const isLiked = favorites.some(country => country.alpha2Code === props.alpha2Code);
+    const isLiked = props.isLiked;
+
 
 
     const likeButton = isLiked ? {
@@ -40,13 +40,12 @@ function CountryRow(props) {
         class: 'CountryRow__favorite-button'
     }
 
-    const handleClick = () => {
-        console.log('{country: {...props}, isLiked: false}')
-        dispatch(toggleFavoriteCountry({country: {...props}, isLiked}))
-    }
+    const handleClick = useCallback(() => {
+        dispatch(toggleFavoriteCountry({alpha2Code: props.alpha2Code, isLiked}))
+    }, [dispatch, isLiked, props.alpha2Code])
 
-    return (
-        <div className="CountryRow">
+    const item = useMemo(()=> {
+        return <div className="CountryRow">
             <NavLink to={`/?country=${props.name}`} className="CountryRow__Line">
                 <Button className="CountryRow__Line__Button">
                     <div className="CountryRow__Line__Button__Avatar">
@@ -64,6 +63,12 @@ function CountryRow(props) {
                           d="M15.063.5c-2.169 0-3.634.904-4.563 1.839C9.57 1.434 8.105.5 5.936.5 2.359.5.5 3.545.5 6.531c0 6.967 10 12.969 10 12.969s10-6.002 10-12.969C20.5 3.545 18.64.5 15.063.5z"/>
                 </svg>
             </div>
+        </div>
+    }, [classes.large, handleClick, likeButton.class, likeButton.color, props.capital, props.flag, props.name, props.timezones])
+
+    return (
+        <div>
+        {item}
         </div>
     );
 }

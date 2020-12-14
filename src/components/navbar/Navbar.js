@@ -6,6 +6,7 @@ import {Typography, Button} from '@material-ui/core';
 import './Navbar.scss'
 
 function Navbar() {
+
     return (
         <div className='NavBar'>
             <Typography variant="h5" component="h5" className="NavBar__name">

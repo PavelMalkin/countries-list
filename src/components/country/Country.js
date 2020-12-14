@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 
-import {Paper, Typography, ListItemText, ListItem} from "@material-ui/core";
+import {Paper, Typography, ListItemText} from "@material-ui/core";
 
 import './Country.scss'
 
