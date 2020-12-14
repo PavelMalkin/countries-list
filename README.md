@@ -4,8 +4,6 @@ In the project directory, you should run:
 
 ### `npm install`
 
-Add file to the root folder with REACT_APP_ACUWEATHER_API_KEY=Your API KEY
-
 then:
 
 ### `npm start`
@@ -18,4 +16,4 @@ You will also see any lint errors in the console.
 
 ## Live version of the application
 
-[https://accuweather-api-spa.web.app](https://accuweather-api-spa.web.app)
+[https://countries-list-7f6db.web.app/](https://countries-list-7f6db.web.app/)

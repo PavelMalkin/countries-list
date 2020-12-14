@@ -5,7 +5,6 @@ import {setCountriesFromStorage, toggleFavoriteCountry} from "../actions/countri
 
 const initialState = {
     countriesList: [],
-    favorites: [],
     hasFetched: false,
     isFetching: false,
     isFetchingError: null
@@ -48,11 +47,11 @@ const countriesReducer = createReducer(initialState, {
         return state;
     },
     [toggleFavoriteCountry]: (state, action) => {
-            state.countriesList.forEach((country, index) => {
-                if (country.alpha2Code === action.payload.alpha2Code) {
-                    state.countriesList[index].isLiked = !action.payload.isLiked
-                }
-            })
+        state.countriesList.forEach((country, index) => {
+            if (country.alpha2Code === action.payload.alpha2Code) {
+                state.countriesList[index].isLiked = !action.payload.isLiked
+            }
+        })
         return state;
     },
 

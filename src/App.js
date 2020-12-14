@@ -4,7 +4,7 @@ import {useLocation} from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import './App.css';
+import './App.scss';
 
 import CountriesList from "./components/countriesList/CountriesList";
 import {getCountriesList} from "./redux/appThunk";

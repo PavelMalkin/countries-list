@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo} from 'react';
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 import {makeStyles} from "@material-ui/core/styles";
 import {Button, Typography} from "@material-ui/core";
