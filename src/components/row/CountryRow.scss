@@ -7,6 +7,9 @@
     right: 5px;
     cursor: pointer;
     display: none;
+    //&:hover {
+    //  display: block;
+    //}
 
     &-liked {
       position: absolute;
@@ -14,6 +17,9 @@
       right: 5px;
       cursor: pointer;
       display: block;
+      //&:hover {
+      //  display: block;
+      //}
     }
   }
 
