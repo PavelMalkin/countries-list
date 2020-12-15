@@ -1,12 +1,11 @@
 import React, {useMemo, useState} from 'react';
 import {useLocation} from "react-router-dom";
-import {List} from 'react-virtualized';
+import {List, AutoSizer} from 'react-virtualized';
 
 import TextField from '@material-ui/core/TextField';
 
 import './CountriesList.scss'
 
-import classes from '../row/CountryRow.scss'
 import CountryRow from "../row/CountryRow";
 
 
@@ -27,15 +26,8 @@ function CountriesList(props) {
         setFilter(e.target.value)
     }
 
-    const style = classes.CountryRow
 
-    function rowRenderer({
-                             key, // Unique key within array of rows
-                             index, // Index of row within collection
-                             isScrolling, // The List is currently being scrolled
-                             isVisible, // This row is visible within the List (eg it is not an overscanned row)
-                             style, // Style object to be applied to row (to position it)
-                         }) {
+    function rowRenderer({key,index, style, }) {
         return (
             <div key={key} style={style}>
                 {rows[index]}
@@ -51,17 +43,16 @@ function CountriesList(props) {
                        className="CountriesList__Search"
                        value={filter}
                        onChange={handleFilter}/>
-            <List
-                width={1000}
-                height={1000}
-                rowCount={countriesList.length}
-                rowHeight={50}
-                rowRenderer={rowRenderer}
-                containerStyle={{
-                    width: "100%",
-                    maxWidth: "100%"
-                }}
-            />
+
+            <AutoSizer>
+                {({height, width}) => (<List
+                    width={width}
+                    height={height}
+                    rowCount={countriesList.length}
+                    rowHeight={50}
+                    rowRenderer={rowRenderer}
+                />)}
+            </AutoSizer>
 
         </div>
     );

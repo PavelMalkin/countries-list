@@ -8,7 +8,6 @@ import Avatar from "@material-ui/core/Avatar";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import "./CountryRow.scss"
-import styles from './CountryRow.scss'
 
 import {toggleFavoriteCountry} from "../../redux/actions/countriesActions";
 
@@ -44,7 +43,6 @@ function CountryRow(props) {
     }, [dispatch, isLiked, props.alpha2Code])
 
     const item = useMemo(()=> {
-        console.log('item fired')
         return <div className={"CountryRow"}>
             <NavLink to={`/?country=${props.name}`} className="CountryRow__Line">
                 <Button className="CountryRow__Line__Button">

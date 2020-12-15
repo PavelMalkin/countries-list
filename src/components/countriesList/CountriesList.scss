@@ -1,6 +1,6 @@
 .CountriesList {
+  height: calc(100vh - 135px) ;
   &__Search > * {
-    margin-top: 10px;
+    margin: 10px;
   }
-
 }
